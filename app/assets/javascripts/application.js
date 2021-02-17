@@ -10,6 +10,24 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+console.log("hoge");
+
+$(document).ready(function() {
+  var url = "//marinesnow.sakura.ne.jp/2019/sample.php";
+  $.getJSON(url, function(data) {
+    for (var i in data) {
+      $("#weather_data").append(
+        "<li>"
+        + data[i].subject
+        + ":" + data[i].score + " "
+        + "(" + data[i].result + ")"
+        + "</li>");
+    }
+  });
+});
+
