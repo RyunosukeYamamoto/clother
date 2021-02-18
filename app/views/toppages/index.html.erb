@@ -1,3 +1,9 @@
+<% if logged_in? %>
+  <h3>ログインユーザー:<%= current_user.name %></h3>
+  <%= link_to 'ログアウト', logout_path, method: :delete %>
+<% end %>
+
+
 <div class="alert alert-danger">今日の東京の気温</div>
 
 <ul id="weather_data">
