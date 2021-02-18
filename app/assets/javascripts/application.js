@@ -18,16 +18,12 @@
 console.log("hoge");
 
 $(document).ready(function() {
-  var url = "//marinesnow.sakura.ne.jp/2019/sample.php";
+  var url = "//api.openweathermap.org/data/2.5/weather?q=Tokyo&units=metric&APPID=b1ae0b538e2e8087bcf3a4c05acb3e15";
   $.getJSON(url, function(data) {
-    for (var i in data) {
       $("#weather_data").append(
         "<li>"
-        + data[i].subject
-        + ":" + data[i].score + " "
-        + "(" + data[i].result + ")"
+        + data.main.temp
         + "</li>");
-    }
   });
 });
 
