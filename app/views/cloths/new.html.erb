@@ -1,0 +1,18 @@
+<%= form_with(model: @cloth, local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :image, '画像をアップロード' %>
+    <%= f.file_field :image %>
+  </div>
+  <div class="form-group">
+    <%= f.label :name, '名称' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <%= f.submit 'アップロードする'%>
+<% end %>
+
+<% @cloths.each do |cloth| %>
+  <%= cloth.name %>
+  <% if cloth.image? %>
+    <%= image_tag cloth.image.url %>
+  <% end %>
+<% end %>

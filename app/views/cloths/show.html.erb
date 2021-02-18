@@ -1,0 +1,4 @@
+<h2><%= @cloth.name %></h2>
+<% if @cloth.image? %>
+  <%= image_tag @cloth.image.url %>
+<% end %>
