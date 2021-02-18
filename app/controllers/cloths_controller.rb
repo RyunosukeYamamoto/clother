@@ -1,4 +1,6 @@
 class ClothsController < ApplicationController
+  before_action :correct_user, only: [:destroy]
+  
   def show
     @cloth = Cloth.find(params[:id])
   end
@@ -28,11 +30,21 @@ class ClothsController < ApplicationController
   end
 
   def destroy
+    @cloth.destroy
+    flash[:success] = "服を削除しました。"
+    redirect_to root_url
   end
   
   private
   
   def cloth_params
     params.require(:cloth).permit(:name, :image)
+  end
+  
+  def correct_user
+    @cloth = current_user.cloths.find_by(id: params[:id])
+    unless @cloth
+      redirect_to root_url
+    end
   end
 end
