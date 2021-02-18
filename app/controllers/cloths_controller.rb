@@ -9,6 +9,7 @@ class ClothsController < ApplicationController
   end
 
   def create
+    @cloths = current_user.cloths.order(id: :desc).page(params[:page])
     @cloth = current_user.cloths.build(cloth_params)
     
     if @cloth.save

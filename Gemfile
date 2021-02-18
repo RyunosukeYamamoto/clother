@@ -56,3 +56,5 @@ gem 'jquery-rails'
 gem 'carrierwave'
 
 gem 'kaminari'
+
+gem 'mini_magick'

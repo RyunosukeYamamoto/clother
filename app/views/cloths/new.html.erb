@@ -13,6 +13,6 @@
 <% @cloths.each do |cloth| %>
   <%= cloth.name %>
   <% if cloth.image? %>
-    <%= image_tag cloth.image.url %>
+    <%= image_tag cloth.image.url, class: 'image' %>
   <% end %>
 <% end %>
