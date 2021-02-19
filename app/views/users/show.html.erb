@@ -1,1 +1,14 @@
 <h1><%= @user.name %>のページ</h1>
+<ul>
+  <% @user.cloths.each do |cloth| %>
+    <li>
+      <%= cloth.name %><br>
+      <% if cloth.image? %>
+        <%= image_tag cloth.image.url, class: 'image' %><br>
+      <% end %>
+      <% if current_user == @user %>
+        <%= link_to "削除", cloth, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

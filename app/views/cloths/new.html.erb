@@ -9,16 +9,3 @@
   </div>
   <%= f.submit 'アップロードする'%>
 <% end %>
-
-<ul>
-<% @cloths.each do |cloth| %>
-  <li>
-    <%= cloth.name %><br>
-    <% if cloth.image? %>
-      <%= image_tag cloth.image.url, class: 'image' %><br>
-    <% end %>
-    <% if current_user == cloth.user %>
-      <%= link_to "Delete", cloth, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
-    <% end %>
-<% end %>
-</ul>

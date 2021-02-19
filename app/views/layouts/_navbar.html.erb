@@ -9,10 +9,16 @@
     <div class="collapse navbar-collapse" id="nav-bar">
       <ul class="navbar-nav">
         <% if logged_in? %>
-          <li class="nav-item"><a href="#" class="nav-link">クローゼット</a></li>
-          <li class="nav-item"><%= link_to "服の追加", new_cloth_path, class: 'nav-link' %></li>
-          <li class="nav-item"><a href="#" class="nav-link">コーデ登録</a></li>
-          <li class="nav-item"><%= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link' %></li>
+          <li class="nav-item"><a href="#" class="nav-link">みんなのクローゼット</a></li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
+            <div class="dropdown-menu">
+              <%= link_to 'マイクローゼット', current_user, class: "dropdown-item" %>
+              <%= link_to "服の追加", new_cloth_path, class: 'dropdown-item' %>
+              <a href="#" class="dropdown">コーデ登録</a>
+              <%= link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item' %>
+            </div>
+          </li>
         <% else %>
           <li class="nav-item"><%= link_to "ログイン", login_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "サインアップ", signup_path, class: "nav-link" %></li>

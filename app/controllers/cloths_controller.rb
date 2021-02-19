@@ -33,7 +33,7 @@ class ClothsController < ApplicationController
   def destroy
     @cloth.destroy
     flash[:success] = "服を削除しました。"
-    redirect_to root_url
+    redirect_to current_user
   end
   
   private
