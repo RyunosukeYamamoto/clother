@@ -9,3 +9,12 @@
   </div>
   <%= f.submit 'アップロードする'%>
 <% end %>
+
+<h2>カテゴリーを追加</h2>
+<%= form_with(model: @category, local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :name, 'カテゴリー名' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <%= f.submit '追加' %>
+<% end %>

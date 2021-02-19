@@ -1,7 +1,26 @@
 class Cloth < ApplicationRecord
-    mount_uploader :image, ImageUploader
+  mount_uploader :image, ImageUploader
     
-    validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 50 }
     
-    belongs_to :user
+  belongs_to :user
+    
+  has_many :relationship_categories
+  has_many :my_categories, through: :relationship_categories, source: :category
+    
+    
+  def categorize(category)
+    if self.user == category.user
+      self.relationship_categories.find_or_create_by(category_id: category.id)
+    end
+  end
+  
+  def uncategorize(category)
+    relationship = self.relationship_categories.find_by(category_id: category.id)
+    relationship.destroy if relationship
+  end
+  
+  def categorized?(category)
+    self.my_categories.include?(category)
+  end
 end

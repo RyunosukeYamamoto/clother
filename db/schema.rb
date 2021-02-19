@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_18_121945) do
+ActiveRecord::Schema.define(version: 2021_02_19_144431) do
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_categories_on_user_id"
+  end
 
   create_table "cloths", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -21,6 +29,15 @@ ActiveRecord::Schema.define(version: 2021_02_18_121945) do
     t.index ["user_id"], name: "index_cloths_on_user_id"
   end
 
+  create_table "relationship_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "cloth_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_relationship_categories_on_category_id"
+    t.index ["cloth_id"], name: "index_relationship_categories_on_cloth_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -29,5 +46,8 @@ ActiveRecord::Schema.define(version: 2021_02_18_121945) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "categories", "users"
   add_foreign_key "cloths", "users"
+  add_foreign_key "relationship_categories", "categories"
+  add_foreign_key "relationship_categories", "cloths"
 end

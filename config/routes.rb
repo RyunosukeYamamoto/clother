@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   
   resources :users, only: [:create, :show, :edit, :destroy]
   resources :cloths, except: [:index]
+  resources :categories, only: [:create, :destroy]
 end

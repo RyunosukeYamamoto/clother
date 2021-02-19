@@ -1,14 +1,55 @@
 <h1><%= @user.name %>のページ</h1>
-<ul>
-  <% @user.cloths.each do |cloth| %>
-    <li>
-      <%= cloth.name %><br>
-      <% if cloth.image? %>
-        <%= image_tag cloth.image.url, class: 'image' %><br>
-      <% end %>
-      <% if current_user == @user %>
-        <%= link_to "削除", cloth, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
-      <% end %>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a href="#all_cloths" class="nav-link" data-toggle="tab">すべての服</a>
+  </li>
+  <% @user.categories.each do |category| %>
+    <li class="nav-item">
+      <a href="#link_list<%= category.id %>" class="nav-link" data-toggle="tab"><%= category.name %></a>
     </li>
   <% end %>
 </ul>
+
+<div class="tab-content">
+  <div id="all_cloths" class="tab-pane">
+    <ul>
+      <% @user.cloths.each do |cloth| %>
+        <li>
+          <%= cloth.name %><br>
+          <% if cloth.image? %>
+            <%= image_tag cloth.image.url, class: 'image' %><br>
+          <% end %>
+          <% if current_user == @user %>
+            <%= link_to "削除", cloth, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  
+  
+  
+  <% @user.categories.each do |category| %>
+    <div id="link_list<%= category.id %>" class="tab-pane">
+      <ul>
+        <% category.categorized_cloths.each do |cloth| %>
+          <li>
+            <%= cloth.name %><br>
+            <% if cloth.image? %>
+              <%= image_tag cloth.image.url, class: 'image' %><br>
+            <% end %>
+            <% if current_user == @user %>
+              <%= link_to "削除", cloth, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    
+</div>
+
+
+

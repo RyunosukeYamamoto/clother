@@ -8,11 +8,10 @@ class ClothsController < ApplicationController
 
   def new
     @cloth = current_user.cloths.build  # form_with 用
-    @cloths = current_user.cloths.order(id: :desc).page(params[:page])
+    @category = current_user.categories.build  # form_with 用
   end
 
   def create
-    @cloths = current_user.cloths.order(id: :desc).page(params[:page])
     @cloth = current_user.cloths.build(cloth_params)
     
     if @cloth.save
