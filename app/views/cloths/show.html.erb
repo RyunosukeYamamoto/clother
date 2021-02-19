@@ -2,3 +2,10 @@
 <% if @cloth.image? %>
   <%= image_tag @cloth.image.url, class: 'image' %>
 <% end %>
+
+<% if current_user == @cloth.user %>
+  <% current_user.categories.each do |category| %>
+    <%= category.name %>
+    <%= render 'relationship_category/categorize_button', cloth: @cloth, category: category %>
+  <% end %>
+<% end %>

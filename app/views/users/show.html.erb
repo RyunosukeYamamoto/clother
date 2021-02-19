@@ -4,6 +4,7 @@
   <li class="nav-item">
     <a href="#all_cloths" class="nav-link" data-toggle="tab">すべての服</a>
   </li>
+  
   <% @user.categories.each do |category| %>
     <li class="nav-item">
       <a href="#link_list<%= category.id %>" class="nav-link" data-toggle="tab"><%= category.name %></a>
@@ -11,12 +12,13 @@
   <% end %>
 </ul>
 
+
 <div class="tab-content">
   <div id="all_cloths" class="tab-pane">
     <ul>
       <% @user.cloths.each do |cloth| %>
         <li>
-          <%= cloth.name %><br>
+          <%= link_to cloth.name, cloth %><br>
           <% if cloth.image? %>
             <%= image_tag cloth.image.url, class: 'image' %><br>
           <% end %>
@@ -27,16 +29,13 @@
       <% end %>
     </ul>
   </div>
-
-  
-  
   
   <% @user.categories.each do |category| %>
     <div id="link_list<%= category.id %>" class="tab-pane">
       <ul>
         <% category.categorized_cloths.each do |cloth| %>
           <li>
-            <%= cloth.name %><br>
+            <%= link_to cloth.name, cloth %><br>
             <% if cloth.image? %>
               <%= image_tag cloth.image.url, class: 'image' %><br>
             <% end %>
