@@ -1,5 +1,6 @@
 class ClothsController < ApplicationController
   before_action :correct_user, only: [:destroy]
+  before_action :require_user_logged_in, except: [:show]
   
   def show
     @cloth = Cloth.find(params[:id])
