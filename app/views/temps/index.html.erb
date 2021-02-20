@@ -1,6 +1,9 @@
 <ul>
   <% @temps.each do |temp| %>
-    <li><%= temp.min %>以上<%= temp.max %></li>
+    <li>
+      <%= temp.min %>以上<%= temp.max %>
+      <%= link_to "削除", temp, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+    </li>
   <% end %>
 </ul>
 
