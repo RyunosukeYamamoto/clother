@@ -48,13 +48,15 @@
   <% end %>
 </div>
 
-<h2>カテゴリーを追加</h2>
-<%= form_with(model: @category, local: true) do |f| %>
-  <div class="form-group">
-    <%= f.label :name, 'カテゴリー名' %>
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
-  <%= f.submit '追加' %>
+<% if @user == current_user %>
+  <h2>カテゴリーを追加</h2>
+  <%= form_with(model: @category, local: true) do |f| %>
+    <div class="form-group">
+      <%= f.label :name, 'カテゴリー名' %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <%= f.submit '追加' %>
+  <% end %>
 <% end %>
 
 

@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :cloths, except: [:index]
   resources :categories, only: [:create, :destroy]
   resources :relationship_categories, only: [:create, :destroy]
+  resources :temps, except: [:show, :new]
 end
