@@ -10,13 +10,13 @@ class CategoriesController < ApplicationController
       else
         flash[:danger] = 'カテゴリーを追加できません。'
       end
-      redirect_to new_cloth_url
+      redirect_to @category.user
     end
     
     def destroy
       @category.destroy
       flash[:success] = 'カテゴリーを削除しました。'
-      redirect_to root_url
+      redirect_to current_user
     end
     
     private

@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @categories = current_user.categories
+    @category = current_user.categories.build  # for_with用
   end
 
   def new

@@ -4,7 +4,6 @@
   <li class="nav-item">
     <a href="#all_cloths" class="nav-link" data-toggle="tab">すべての服</a>
   </li>
-  
   <% @user.categories.each do |category| %>
     <li class="nav-item">
       <a href="#link_list<%= category.id %>" class="nav-link" data-toggle="tab"><%= category.name %></a>
@@ -29,7 +28,6 @@
       <% end %>
     </ul>
   </div>
-  
   <% @user.categories.each do |category| %>
     <div id="link_list<%= category.id %>" class="tab-pane">
       <ul>
@@ -45,10 +43,19 @@
           </li>
         <% end %>
       </ul>
+      <%= link_to "このカテゴリを削除", category, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
     </div>
   <% end %>
-    
 </div>
+
+<h2>カテゴリーを追加</h2>
+<%= form_with(model: @category, local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :name, 'カテゴリー名' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <%= f.submit '追加' %>
+<% end %>
 
 
 

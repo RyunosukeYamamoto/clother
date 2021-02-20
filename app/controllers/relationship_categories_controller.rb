@@ -14,6 +14,6 @@ class RelationshipCategoriesController < ApplicationController
     cloth = current_user.cloths.find(params[:cloth_id])
     cloth.uncategorize(category)
     flash[:success] = 'カテゴリーから削除しました。'
-    redirect_to current_user
+    redirect_to cloth
   end
 end

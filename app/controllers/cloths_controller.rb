@@ -8,7 +8,6 @@ class ClothsController < ApplicationController
 
   def new
     @cloth = current_user.cloths.build  # form_with 用
-    @category = current_user.categories.build  # form_with 用
   end
 
   def create
