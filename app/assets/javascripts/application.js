@@ -16,6 +16,7 @@
 //= require_tree .
 
 
+$(document).on('turbolinks:load', function() {
 $(document).ready(function() {
   var url = "//api.openweathermap.org/data/2.5/weather?q=Tokyo&units=metric&APPID=b1ae0b538e2e8087bcf3a4c05acb3e15";
   $.getJSON(url, function(data) {
@@ -25,4 +26,4 @@ $(document).ready(function() {
         + "</li>");
   });
 });
-
+});

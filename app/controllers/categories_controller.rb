@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+  before_action :require_user_logged_in
+  before_action :correct_user, only: [:destroy]
+  
     def create
       @category = current_user.categories.build(category_params)
       
@@ -11,11 +14,21 @@ class CategoriesController < ApplicationController
     end
     
     def destroy
+      @category.destroy
+      flash[:success] = 'カテゴリーを削除しました。'
+      redirect_to root_url
     end
     
     private
     
     def category_params
       params.require(:category).permit(:name)
+    end
+    
+    def correct_user
+      @category = current_user.categories.find_by(id: params[:id])
+      unless @category
+        redirect_to root_url
+      end
     end
 end

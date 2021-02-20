@@ -6,7 +6,7 @@ class RelationshipCategoriesController < ApplicationController
     cloth = current_user.cloths.find(params[:cloth_id])
     cloth.categorize(category)
     flash[:success] = 'カテゴライズしました。'
-    redirect_to current_user
+    redirect_to cloth
   end
 
   def destroy

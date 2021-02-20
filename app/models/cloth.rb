@@ -5,7 +5,7 @@ class Cloth < ApplicationRecord
     
   belongs_to :user
     
-  has_many :relationship_categories
+  has_many :relationship_categories, dependent: :destroy
   has_many :my_categories, through: :relationship_categories, source: :category
     
     
