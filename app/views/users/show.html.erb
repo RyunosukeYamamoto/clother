@@ -43,7 +43,9 @@
           </li>
         <% end %>
       </ul>
-      <%= link_to "このカテゴリを削除", category, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+      <% if current_user == @user %>
+        <%= link_to "このカテゴリを削除", category, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+      <% end %>
     </div>
   <% end %>
 </div>

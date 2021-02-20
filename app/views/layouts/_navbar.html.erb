@@ -15,7 +15,7 @@
             <div class="dropdown-menu">
               <%= link_to 'マイクローゼット', current_user, class: "dropdown-item" %>
               <%= link_to "服の追加", new_cloth_path, class: 'dropdown-item' %>
-              <%= link_to "気温パターン一覧", temps_path, class: 'dropdown-item' %>
+              <%= link_to "気温パターン一覧", code_user_path(current_user), class: 'dropdown-item' %>
               <%= link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item' %>
             </div>
           </li>

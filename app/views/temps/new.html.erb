@@ -1,14 +1,6 @@
-<ul>
-  <% @temps.each do |temp| %>
-    <li>
-      <%= temp.min %>以上<%= temp.max %>
-      <%= link_to "削除", temp, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
-    </li>
-  <% end %>
-</ul>
-
 <h2>新規温度パターンを作る</h2>
-<%= form_with(model: current_user.temps.build, local: true) do |f| %>
+<%= form_with(model: @temp, local: true) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
   <div class="form-group">
     <%= f.label '上限', :max %>
     <%= f.number_field :max, class: 'form-control' %>

@@ -1,4 +1,5 @@
 <%= form_with(model: @cloth, local: true) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
   <div class="form-group">
     <%= f.label :image, '画像をアップロード' %>
     <%= f.file_field :image %>

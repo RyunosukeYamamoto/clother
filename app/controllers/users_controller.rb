@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:destroy]
+  before_action :require_user_logged_in, only: [:destroy, :code]
   
   def show
     @user = User.find(params[:id])
@@ -23,6 +23,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  end
+  
+  def code
+    @user = User.find(params[:id])
+    @temps = @user.temps
   end
   
   private

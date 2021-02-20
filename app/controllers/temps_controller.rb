@@ -2,8 +2,8 @@ class TempsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only: [:edit, :update, :destroy]
   
-  def index
-    @temps = current_user.temps
+  def new
+    @temp = current_user.temps.build
   end
 
   def create
@@ -11,10 +11,10 @@ class TempsController < ApplicationController
     
     if @temp.save
       flash[:success] = "気温パターンを追加しました。"
-      redirect_to temps_url
+      redirect_to code_user_url(current_user)
     else
-      flash[:danger] = "気温パターンを追加できません。"
-      redirect_to temps_url
+      flash.now[:danger] = "気温パターンを追加できません。"
+      render :new
     end
   end
 
@@ -27,7 +27,7 @@ class TempsController < ApplicationController
   def destroy
     @temp.destroy
     flash[:success] = "気温パターンを削除しました。"
-    redirect_to temps_url
+    redirect_to root_url
   end
   
   private
