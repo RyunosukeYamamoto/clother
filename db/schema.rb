@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_121526) do
+ActiveRecord::Schema.define(version: 2021_02_22_150636) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -38,12 +38,22 @@ ActiveRecord::Schema.define(version: 2021_02_20_121526) do
     t.index ["cloth_id"], name: "index_relationship_categories_on_cloth_id"
   end
 
+  create_table "relationship_temps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "temp_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_relationship_temps_on_category_id"
+    t.index ["temp_id"], name: "index_relationship_temps_on_temp_id"
+  end
+
   create_table "temps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "max"
     t.integer "min"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.string "name"
     t.index ["user_id"], name: "index_temps_on_user_id"
   end
 
@@ -59,5 +69,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_121526) do
   add_foreign_key "cloths", "users"
   add_foreign_key "relationship_categories", "categories"
   add_foreign_key "relationship_categories", "cloths"
+  add_foreign_key "relationship_temps", "categories"
+  add_foreign_key "relationship_temps", "temps"
   add_foreign_key "temps", "users"
 end

@@ -2,6 +2,10 @@ class TempsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only: [:edit, :update, :destroy]
   
+  def show
+    @temp = Temp.find(params[:id])
+  end
+  
   def new
     @temp = current_user.temps.build
   end
@@ -27,13 +31,13 @@ class TempsController < ApplicationController
   def destroy
     @temp.destroy
     flash[:success] = "気温パターンを削除しました。"
-    redirect_to root_url
+    redirect_to code_user_url(current_user)
   end
   
   private
   
   def temp_params
-    params.require(:temp).permit(:max, :min)
+    params.require(:temp).permit(:max, :min, :name)
   end
   
   def correct_user

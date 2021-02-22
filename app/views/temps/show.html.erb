@@ -1,0 +1,16 @@
+<h2><%= @temp.min %>以上<%= @temp.max %>以下のときのコーデ</h2>
+
+<ul>
+  <% @temp.temps_category.each do |category| %>
+    <li>
+      <%= category.name %>
+    </li>
+  <% end %>
+</ul>
+
+<% if @temp.user == current_user %>
+  <h3>カテゴリーを追加する</h3>
+  <% current_user.categories.each do |category| %>
+    <%= category.name %><%= render 'relationship_temps/temp_button', temp: @temp, category: category %>
+  <% end %>
+<% end %>
