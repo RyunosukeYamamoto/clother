@@ -3,8 +3,30 @@
 <% end %>
 
 
-<div class="alert alert-danger">今日の東京の気温</div>
+<div class="alert alert-danger" id="weather_data">
+  <h2>今日の東京の気温</h2>
+</div>
 
-<ul id="weather_data">
-  
-</ul>
+<%= form_with(url: root_path, method: :get, local: true) do |f| %>
+  <div class='form-group'>
+    <%= f.label '気温', :degree %>
+    <%= f.number_field :degree, class: 'form-control', id: 'degree_form' %>
+  </div>
+  <%= f.submit 'コーデを提案', class: 'btn btn-success' %>
+<% end %>
+
+<% if @degree.present? %>
+  <h3>今日のコーデ</h3>
+  <%= @degree %>
+  <% if @temps.first.temps_category.present? %>
+    <% @temps.first.temps_category.each do |category| %>
+      <%= category.categorized_cloths.first.name %>
+      <% if category.categorized_cloths.first.image.present? %>
+        <%= image_tag category.categorized_cloths.first.image.url, class: 'image' %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>提案できるコーデがありません</p>
+  <% end %>
+    
+<% end %>
