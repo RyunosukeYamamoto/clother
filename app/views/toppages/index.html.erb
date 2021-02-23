@@ -1,32 +1,28 @@
-<% if logged_in? %>
-  <h3>ログインユーザー:<%= current_user.name %></h3>
-<% end %>
-
-
 <div class="alert alert-danger" id="weather_data">
   <h2>今日の東京の気温</h2>
 </div>
 
-<%= form_with(url: root_path, method: :get, local: true) do |f| %>
-  <div class='form-group'>
-    <%= f.label '気温', :degree %>
-    <%= f.number_field :degree, class: 'form-control', id: 'degree_form' %>
-  </div>
-  <%= f.submit 'コーデを提案', class: 'btn btn-success' %>
-<% end %>
-
-<% if @degree.present? %>
-  <h3>今日のコーデ</h3>
-  <%= @degree %>
-  <% if @temps.first.temps_category.present? %>
-    <% @temps.first.temps_category.each do |category| %>
-      <%= category.categorized_cloths.first.name %>
-      <% if category.categorized_cloths.first.image.present? %>
-        <%= image_tag category.categorized_cloths.first.image.url, class: 'image' %>
-      <% end %>
-    <% end %>
-  <% else %>
-    <p>提案できるコーデがありません</p>
+<% if logged_in? %>
+  <%= form_with(url: root_path, method: :get, local: true) do |f| %>
+    <div class='form-group'>
+      <%= f.label '気温', :degree %>
+      <%= f.number_field :degree, class: 'form-control', id: 'degree_form' %>
+    </div>
+    <%= f.submit 'コーデを提案', class: 'btn btn-success' %>
   <% end %>
-    
+  
+  <% if @degree.present? %>
+    <h3><%= @degree %>度のコーデ</h3>
+    <% if @cloths.present? %>
+      <%= @temp.name %>コーデからの提案
+      <% @cloths.each do |cloth| %>
+        <%= cloth.name %>
+        <% if cloth.image.present? %>
+          <%= image_tag cloth.image.url, class: 'image' %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>提案できるコーデがありません</p>
+    <% end %>
+  <% end %>
 <% end %>

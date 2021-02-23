@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @category = current_user.categories.build  # for_with用
+    @cloth = current_user.cloths.build  # form_with 用
   end
 
   def new
