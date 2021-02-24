@@ -14,52 +14,37 @@
 
 <div class="tab-content">
   <div id="all_cloths" class="tab-pane">
-    <ul>
-      <% @user.cloths.each do |cloth| %>
-        <li>
-          <%= link_to cloth.name, cloth %><br>
-          <% if cloth.image? %>
-            <%= image_tag cloth.image.url, class: 'image' %><br>
-          <% end %>
-          <% if current_user == @user %>
-            <%= link_to "削除", cloth, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
-          <% end %>
-        </li>
-      <% end %>
+    <ul class="cloths">
+      <%= render 'cloths/cloths', cloths: @user.cloths %>
     </ul>
+    <% if current_user == @user %>
+        <h2>カテゴリーを追加</h2>
+        <%= form_with(model: @category, local: true) do |f| %>
+          <div class="form-group">
+            <%= f.label :name, 'カテゴリー名' %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+          <%= f.submit '追加' %>
+        <% end %>
+      <% end %>
   </div>
   <% @user.categories.each do |category| %>
     <div id="link_list<%= category.id %>" class="tab-pane">
-      <ul>
-        <% category.categorized_cloths.each do |cloth| %>
-          <li>
-            <%= link_to cloth.name, cloth %><br>
-            <% if cloth.image? %>
-              <%= image_tag cloth.image.url, class: 'image' %><br>
-            <% end %>
-            <% if current_user == @user %>
-              <%= link_to "削除", cloth, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
-            <% end %>
-          </li>
-        <% end %>
+      <ul class="cloths">
+        <%= render 'cloths/cloths', cloths: category.categorized_cloths %>
       </ul>
+      
       <% if current_user == @user %>
         <%= link_to "このカテゴリを削除", category, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+        <h2>カテゴリーを追加</h2>
+        <%= form_with(model: @category, local: true) do |f| %>
+          <div class="form-group">
+            <%= f.label :name, 'カテゴリー名' %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+          <%= f.submit '追加' %>
+        <% end %>
       <% end %>
     </div>
   <% end %>
 </div>
-
-<% if @user == current_user %>
-  <h2>カテゴリーを追加</h2>
-  <%= form_with(model: @category, local: true) do |f| %>
-    <div class="form-group">
-      <%= f.label :name, 'カテゴリー名' %>
-      <%= f.text_field :name, class: 'form-control' %>
-    </div>
-    <%= f.submit '追加' %>
-  <% end %>
-<% end %>
-
-
-

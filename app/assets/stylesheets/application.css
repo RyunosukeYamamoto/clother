@@ -13,7 +13,69 @@
  *= require_tree .
  *= require_self
  */
+
+.top-image-box{
+  position: relative;
+}
+
+.now-code-button{
+  position: absolute;
+  color: white;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  margin: 0;
+}
  
- .image{
-   width: 350px;
- }
+.top-image-box img{
+   width: 100%;
+}
+ 
+#weather_data{
+  text-align: center;
+}
+
+.cloths{
+  list-style: none;
+  padding-left: 0;
+}
+ 
+.cloths:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.cloth{
+  float: left;
+  width: 25%;
+  height: 400px;
+  background-color: #dbbdcc;
+}
+
+.cloth img{
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.main-content{
+  margin: 0 20%;
+}
+
+.how-to-use:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.step{
+  float: left;
+  width: 33.3333%;
+}
+
+.step img{
+  width: 75%;
+}

@@ -21,10 +21,11 @@ $(document).ready(function() {
   var url = "//api.openweathermap.org/data/2.5/weather?q=Tokyo&units=metric&APPID=b1ae0b538e2e8087bcf3a4c05acb3e15";
   $.getJSON(url, function(data) {
       $("#weather_data").append(
-        "<h3>"
-        + data.main.temp
-        + "</h3>");
+        "<span>"
+        + data.main.temp + '°C'
+        + "</span>");
       $("#degree_form").val(Math.round(data.main.temp));
+      $('#wicon').attr('src', "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
   });
 });
 });

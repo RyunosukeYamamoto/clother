@@ -8,4 +8,5 @@
     <%= category.name %>
     <%= render 'relationship_category/categorize_button', cloth: @cloth, category: category %>
   <% end %>
+  <%= link_to "この服を削除", @cloth, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
 <% end %>

@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:destroy, :code]
+  before_action :require_user_logged_in, only: [:destroy, :code, :show]
   
   def show
     @user = User.find(params[:id])
     @category = current_user.categories.build  # for_with用
-    @cloth = current_user.cloths.build  # form_with 用
   end
 
   def new
