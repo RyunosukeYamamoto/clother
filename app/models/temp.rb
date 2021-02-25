@@ -1,7 +1,7 @@
 class Temp < ApplicationRecord
   validates :max, numericality: { only_integer: true }, allow_blank: true
   validates :min, numericality: { only_integer: true }, allow_blank: true
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 10 }
   
   validate :temp_validate
   

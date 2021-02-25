@@ -1,50 +1,31 @@
 <h1><%= @user.name %>のページ</h1>
 
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a href="#all_cloths" class="nav-link" data-toggle="tab">すべての服</a>
-  </li>
-  <% @user.categories.each do |category| %>
-    <li class="nav-item">
-      <a href="#link_list<%= category.id %>" class="nav-link" data-toggle="tab"><%= category.name %></a>
-    </li>
-  <% end %>
-</ul>
-
-
-<div class="tab-content">
-  <div id="all_cloths" class="tab-pane">
+<div class="tab-wrap">
+  <input id="TAB-all" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-all">すべての服</label>
+  <div class="tab-content">
     <ul class="cloths">
       <%= render 'cloths/cloths', cloths: @user.cloths %>
     </ul>
-    <% if current_user == @user %>
-        <h2>カテゴリーを追加</h2>
-        <%= form_with(model: @category, local: true) do |f| %>
-          <div class="form-group">
-            <%= f.label :name, 'カテゴリー名' %>
-            <%= f.text_field :name, class: 'form-control' %>
-          </div>
-          <%= f.submit '追加' %>
-        <% end %>
-      <% end %>
   </div>
+  
   <% @user.categories.each do |category| %>
-    <div id="link_list<%= category.id %>" class="tab-pane">
+    <input id="TAB-<%= category.id %>" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-<%= category.id %>"><%= category.name %></label>
+    <div class="tab-content">
       <ul class="cloths">
         <%= render 'cloths/cloths', cloths: category.categorized_cloths %>
       </ul>
-      
-      <% if current_user == @user %>
-        <%= link_to "このカテゴリを削除", category, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
-        <h2>カテゴリーを追加</h2>
-        <%= form_with(model: @category, local: true) do |f| %>
-          <div class="form-group">
-            <%= f.label :name, 'カテゴリー名' %>
-            <%= f.text_field :name, class: 'form-control' %>
-          </div>
-          <%= f.submit '追加' %>
-        <% end %>
-      <% end %>
+      <%= link_to "このカテゴリを削除", category, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
     </div>
   <% end %>
 </div>
+
+<% if current_user == @user %>
+  <h2>カテゴリーを追加</h2>
+  <%= form_with(model: @category, local: true) do |f| %>
+    <div class="form-group">
+      <%= f.label :name, 'カテゴリー名' %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <%= f.submit '追加' %>
+  <% end %>
+<% end %>

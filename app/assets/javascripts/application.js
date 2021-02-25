@@ -20,10 +20,7 @@ $(document).on('turbolinks:load', function() {
 $(document).ready(function() {
   var url = "//api.openweathermap.org/data/2.5/weather?q=Tokyo&units=metric&APPID=b1ae0b538e2e8087bcf3a4c05acb3e15";
   $.getJSON(url, function(data) {
-      $("#weather_data").append(
-        "<span>"
-        + data.main.temp + '°C'
-        + "</span>");
+      $("#now_temp").text(data.main.temp + '°C');
       $("#degree_form").val(Math.round(data.main.temp));
       $('#wicon').attr('src', "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
   });
