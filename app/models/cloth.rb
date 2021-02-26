@@ -1,7 +1,7 @@
 class Cloth < ApplicationRecord
   mount_uploader :image, ImageUploader
     
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 10 }
   validates :image, presence: true
     
   belongs_to :user

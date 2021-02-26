@@ -1,5 +1,5 @@
 <div class="alert alert-light" style="margin:0; padding: 3px; color:#000">
-  <h2 id="weather_data">今日の東京の天気:
+  <h2 id="weather_data">現在の東京の天気:
      <span id="icon"><img id="wicon" src="" alt="Weather icon"></span>
      <span id="now_temp"></span>
    </h2>
@@ -19,8 +19,10 @@
   <% if logged_in? %>
     <% if @degree.present? %>
       <h3 class="suggest"><%= @degree %>度のコーデ</h3>
-      <% if @cloths.present? %>
+      <% if @temp.present? %>
         <h4 class="suggest">「<%= @temp.name %>」からの提案</h4>
+      <% end %>
+      <% if @cloths.present? %>
         <ul class="cloths">
           <%= render 'cloths/cloths', cloths: @cloths %>
         </ul>

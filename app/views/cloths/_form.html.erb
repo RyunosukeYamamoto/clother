@@ -1,12 +1,13 @@
 <%= form_with(model: model, local: true) do |f| %>
   <%= render 'layouts/error_messages', model: f.object %>
-  <div class="form-group">
-    <%= f.label :image, '画像をアップロード' %>
-    <%= f.file_field :image %>
+  <div class="image-app">
+    <div class="form-name">
+      <%= f.label :name, '名称' %>
+      <%= f.text_field :name, id:"cloth_name" %>
+    </div>
+    <div class="form-image mt-2 mb-2">
+      <%= f.file_field :image, accept: 'image/jpg, image/jpeg, image/png, image/gif' %>
+    </div>
+    <%= f.submit 'アップロードする', class:'btn btn-warning' %>
   </div>
-  <div class="form-group">
-    <%= f.label :name, '名称' %>
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
-  <%= f.submit 'アップロードする'%>
 <% end %>

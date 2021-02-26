@@ -1,8 +1,7 @@
 <% cloths.each do |cloth| %>
   <li class="cloth">
-    <h5><%= link_to cloth.name, cloth %></h5>
     <% if cloth.image.present? %>
-      <%= image_tag cloth.image.url %>
+      <%= link_to image_tag(cloth.image.url), cloth %>
     <% end %>
   </li>
 <% end %>
