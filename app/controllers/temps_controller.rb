@@ -26,6 +26,13 @@ class TempsController < ApplicationController
   end
 
   def update
+    if @temp.update(temp_params)
+      flash[:success] = '気温パターンは正常に更新されました'
+      redirect_to @temp
+    else
+      flash.now[:danger] = '気温パターンは更新されませんでした'
+      render :edit
+    end
   end
 
   def destroy

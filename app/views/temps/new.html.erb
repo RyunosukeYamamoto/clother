@@ -1,17 +1,2 @@
-<h2>新規温度パターンを作る</h2>
-<%= form_with(model: @temp, local: true) do |f| %>
-  <%= render 'layouts/error_messages', model: f.object %>
-  <div class="form-group">
-    <%= f.label '名称', :name %>
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label '上限', :max %>
-    <%= f.number_field :max, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label '下限', :min %>
-    <%= f.number_field :min, class: 'form-control' %>
-  </div>
-  <%= f.submit '登録', class: 'btn btn-success' %>
-<% end %>
+<h2 class="ml-3">新規温度パターンを作る</h2>
+<%= render 'form', temp: @temp %>

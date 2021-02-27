@@ -1,12 +1,30 @@
-<h2><%= @cloth.name %></h2>
-<% if @cloth.image? %>
-  <%= image_tag @cloth.image.url, class: 'image' %>
-<% end %>
+<h2 class="ml-3"><%= @cloth.name %></h2>
+<div class="cloth-show">
+  <div class="cloth-main">
+    <% if @cloth.image? %>
+      <%= image_tag @cloth.image.url, class: 'image' %>
+    <% end %>
+  </div>
 
-<% if current_user == @cloth.user %>
-  <% current_user.categories.each do |category| %>
-    <%= category.name %>
-    <%= render 'relationship_category/categorize_button', cloth: @cloth, category: category %>
+  <% if current_user == @cloth.user %>
+    <div class="cloths-category-group">
+      <div class="category-classify" id="categorized">
+        <h4>登録済みカテゴリー</h4>
+        <% @cloth.my_categories.each do |category| %>
+          <h5><%= category.name %></h5>
+          <%= render 'relationship_category/uncategorize_button', cloth: @cloth, category: category %>
+        <% end %>
+      </div>
+      <div class="category-classify" id="no-categorized">
+        <h4 class="mt-3">未登録のカテゴリー</h4>
+        <% current_user.categories.each do |category| %>
+          <% unless @cloth.categorized?(category) %>
+            <h5><%= category.name %></h5>
+            <%= render 'relationship_category/categorize_button', cloth: @cloth, category: category %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+</div>
+    <%= link_to "この服を削除", @cloth, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
   <% end %>
-  <%= link_to "この服を削除", @cloth, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
-<% end %>

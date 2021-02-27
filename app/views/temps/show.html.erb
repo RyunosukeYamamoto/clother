@@ -1,16 +1,30 @@
-<h2><%= @temp.min %>以上<%= @temp.max %>以下のときのコーデ</h2>
-
-<ul>
+<h2 class="ml-3"><%= @temp.name %></h2>
+<h3 class="ml-3"><%= @temp.min %>~<%= @temp.max %>°Cのときのコーデ</h3>
+<h4 class="ml-3">
   <% @temp.temps_category.each do |category| %>
-    <li>
-      <%= category.name %>
-    </li>
+    <span class="badge badge-info"><%= category.name %></span>
   <% end %>
-</ul>
+</h4>
+
+<hr>
 
 <% if @temp.user == current_user %>
-  <h3>カテゴリーを追加する</h3>
-  <% current_user.categories.each do |category| %>
-    <%= category.name %><%= render 'relationship_temps/temp_button', temp: @temp, category: category %>
-  <% end %>
+  <div class="temp-category-group">
+    <div class="category-classify temp-category">
+      <h4>登録済みカテゴリー</h4>
+      <% @temp.temps_category.each do |category| %>
+        <h5><%= category.name %></h5>
+        <%= render 'relationship_temps/untemp_button', temp: @temp, category: category %>
+      <% end %>
+    </div>
+    <div class="category-classify temp-category">
+      <h4>未登録のカテゴリー</h4>
+      <% current_user.categories.each do |category| %>
+        <% unless @temp.have_category?(category) %>
+          <h5><%= category.name %></h5>
+          <%= render 'relationship_temps/temp_button', temp: @temp, category: category %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 <% end %>

@@ -1,0 +1,5 @@
+<%= form_with(model: cloth.relationship_categories.find_by(category_id: category.id), local: true, method: :delete) do |f| %>
+  <%= hidden_field_tag :category_id, category.id %>
+  <%= hidden_field_tag :cloth_id, cloth.id %>
+  <%= f.submit '追加済み', class: 'btn btn-primary btn-small' %>
+<% end %>
