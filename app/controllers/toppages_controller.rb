@@ -1,6 +1,7 @@
 class ToppagesController < ApplicationController
   def index
     if logged_in?
+      gon.city_name = current_user
       if params[:degree].present?
         @degree = params[:degree].to_i
         temps = []
@@ -19,11 +20,15 @@ class ToppagesController < ApplicationController
             end
           end
         end
-        @temp = temps[rand(temps.length)]
+        if temps.present?
+          @temp = temps[rand(0..temps.length-1)]
+        end
         @cloths = []
         if @temp.present?
           @temp.temps_category.each do |category|
-            @cloths.push(category.categorized_cloths[rand(category.categorized_cloths.length)])
+            if category.categorized_cloths.present?
+              @cloths.push(category.categorized_cloths[rand(0..category.categorized_cloths.length-1)])
+            end
           end
         end
       end

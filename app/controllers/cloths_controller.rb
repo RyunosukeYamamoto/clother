@@ -1,6 +1,6 @@
 class ClothsController < ApplicationController
-  before_action :correct_user, only: [:destroy]
   before_action :require_user_logged_in, except: [:show]
+  before_action :correct_user, only: [:destroy]
   
   def show
     @cloth = Cloth.find(params[:id])
@@ -20,12 +20,6 @@ class ClothsController < ApplicationController
       flash.now[:warning] = '服を登録できませんでした。'
       render :new
     end
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   def destroy

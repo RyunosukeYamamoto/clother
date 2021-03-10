@@ -59,6 +59,8 @@ gem 'kaminari'
 
 gem 'mini_magick'
 
+gem 'gon'
+
 gem 'pry-byebug', group: :development
 
 group :production do

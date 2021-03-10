@@ -21,13 +21,18 @@
       <h3 class="suggest"><%= @degree %>度のコーデ</h3>
       <% if @temp.present? %>
         <h4 class="suggest">「<%= @temp.name %>」からの提案</h4>
+        <h5 class="suggest">
+          <% @temp.temps_category.each do |category| %>
+            <span class="badge badge-info"><%= category.name %></span>
+          <% end %>
+        </h5>
       <% end %>
       <% if @cloths.present? %>
         <ul class="cloths">
           <%= render 'cloths/cloths', cloths: @cloths %>
         </ul>
       <% else %>
-        <p style="text-align:center;">提案できるコーデがありません</p>
+        <p style="text-align:center;">提案できる服がありません</p>
       <% end %>
     <% end %>
   <% end %>
