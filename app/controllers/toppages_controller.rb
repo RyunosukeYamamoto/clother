@@ -1,7 +1,6 @@
 class ToppagesController < ApplicationController
   def index
     if logged_in?
-      gon.city_name = current_user
       if params[:degree].present?
         @degree = params[:degree].to_i
         temps = []

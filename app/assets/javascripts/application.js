@@ -18,7 +18,12 @@
 
 $(document).on('turbolinks:load', function() {
 $(document).ready(function() {
-  var url = "//api.openweathermap.org/data/2.5/weather?q=Tokyo&units=metric&APPID=b1ae0b538e2e8087bcf3a4c05acb3e15";
+  var hoge = $("#city_name").text();
+  if(!hoge){
+    var url = "//api.openweathermap.org/data/2.5/weather?q=Tokyo&units=metric&APPID=b1ae0b538e2e8087bcf3a4c05acb3e15";
+  } else{
+    var url = "//api.openweathermap.org/data/2.5/weather?q=" + hoge + "&units=metric&APPID=b1ae0b538e2e8087bcf3a4c05acb3e15";
+  }
   $.getJSON(url, function(data) {
       $("#now_temp").text(data.main.temp + '°C');
       $("#degree_form").val(Math.round(data.main.temp));
