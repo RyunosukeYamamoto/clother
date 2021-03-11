@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :cloths
   has_many :categories
   has_many :temps
+  has_many :posts
 end

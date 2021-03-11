@@ -1,0 +1,13 @@
+<%= form_with(model: @post, local: true) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+  <div class="app">
+    <div class="form-image mt-2 mb-2">
+      <%= f.file_field :image, accept: 'image/jpg, image/jpeg, image/png, image/gif' %>
+    </div>
+    <div class="form-name">
+      <%= f.label :description, '名称' %>
+      <%= f.text_area :description, class: "name" %>
+    </div>
+    <%= f.submit 'アップロードする', class: 'btn btn-warning' %>
+  </div>
+<% end %>

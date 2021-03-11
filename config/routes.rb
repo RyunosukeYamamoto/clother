@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   resources :relationship_categories, only: [:create, :destroy]
   resources :temps, except: [:index]
   resources :relationship_temps, only: [:create, :destroy]
+  resources :posts, except: [:edit, :update]
 end
