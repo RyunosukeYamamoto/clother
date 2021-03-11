@@ -1,14 +1,20 @@
 <div class="alert alert-light" style="margin:0; padding: 3px; color:#000">
   <h2 id="weather_data">現在の
-  <% if current_user.city.present? %>
-    <span id='city_name'><%= current_user.city %></span>
+  <% if logged_in? %>
+    <% if current_user.city.present? %>
+      <span id='city_name'><%= current_user.city %></span>
+    <% else %>
+      東京
+    <% end %>
+      の天気:
+      <span id="icon"><img id="wicon" src="" alt="Weather icon"></span>
+      <span id="now_temp"></span>
   <% else %>
-    東京
+    東京の天気：
+    <span id="icon"><img id="wicon" src="" alt="Weather icon"></span>
+    <span id="now_temp"></span>
   <% end %>
-  の天気:
-     <span id="icon"><img id="wicon" src="" alt="Weather icon"></span>
-     <span id="now_temp"></span>
-   </h2>
+  </h2>
 </div>
 
 <div class="top-image-box">
