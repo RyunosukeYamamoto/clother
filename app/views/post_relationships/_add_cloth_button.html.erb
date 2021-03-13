@@ -1,0 +1,13 @@
+<% if post.already_add(cloth) %>
+  <%= form_with(model: post.post_relationships.find_by(cloth_id: cloth.id), local: true, method: :delete) do |f| %>
+    <%= hidden_field_tag :post_id, post.id %>
+    <%= hidden_field_tag :cloth_id, cloth.id %>
+    <%= f.submit 'コーデから削除', class: 'btn btn-danger btn-block' %>
+  <% end %>
+<% else %>
+  <%= form_with(model: post.post_relationships.build, local: true) do |f| %>
+    <%= hidden_field_tag :post_id, post.id %>
+    <%= hidden_field_tag :cloth_id, cloth.id %>
+    <%= f.submit '追加', class: 'btn btn-outline-primary btn-block' %>
+  <% end %>
+<% end %>

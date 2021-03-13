@@ -1,0 +1,45 @@
+<div>
+  <ul class="nav nav-tabs nav-justified mb-3">
+    <li class="nav-item"><a href="<%= closet_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(closet_user_path(@user)) %>">クローゼット</a></li>
+    <li class="nav-item"><a href="<%= code_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(code_user_path(@user)) %>">気温パターン</a></li>
+  </ul>
+
+
+
+  <h1><%= @user.name %>のクローゼット</h1>
+  <% if @user == current_user %>
+    <small class="text-muted ml-3"><%= link_to 'ユーザ情報を編集', edit_user_path(current_user) %></small>
+  <% end %>
+  
+  <div class="tab-wrap">
+    <input id="TAB-all" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-all">すべての服</label>
+    <div class="tab-content">
+      <ul class="cloths">
+        <%= render 'cloths/cloths', cloths: @user.cloths %>
+      </ul>
+    </div>
+    
+    <% @user.categories.each do |category| %>
+      <input id="TAB-<%= category.id %>" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-<%= category.id %>"><%= category.name %></label>
+      <div class="tab-content">
+        <ul class="cloths">
+          <%= render 'cloths/cloths', cloths: category.categorized_cloths %>
+        </ul>
+        <% if @category %>
+          <%= link_to "このカテゴリを削除", category, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  
+  <% if @category %>
+    <h2>カテゴリーを追加</h2>
+    <%= form_with(model: @category, local: true) do |f| %>
+      <div class="form-group">
+        <%= f.label :name, 'カテゴリー名' %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+      <%= f.submit '追加' %>
+    <% end %>
+  <% end %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_044230) do
+ActiveRecord::Schema.define(version: 2021_03_13_071431) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 2021_03_11_044230) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_cloths_on_user_id"
+  end
+
+  create_table "post_relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "cloth_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cloth_id"], name: "index_post_relationships_on_cloth_id"
+    t.index ["post_id"], name: "index_post_relationships_on_post_id"
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -66,6 +75,16 @@ ActiveRecord::Schema.define(version: 2021_03_11_044230) do
     t.index ["user_id"], name: "index_temps_on_user_id"
   end
 
+  create_table "user_relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "follow_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follow_id"], name: "index_user_relationships_on_follow_id"
+    t.index ["user_id", "follow_id"], name: "index_user_relationships_on_user_id_and_follow_id", unique: true
+    t.index ["user_id"], name: "index_user_relationships_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -77,10 +96,14 @@ ActiveRecord::Schema.define(version: 2021_03_11_044230) do
 
   add_foreign_key "categories", "users"
   add_foreign_key "cloths", "users"
+  add_foreign_key "post_relationships", "cloths"
+  add_foreign_key "post_relationships", "posts"
   add_foreign_key "posts", "users"
   add_foreign_key "relationship_categories", "categories"
   add_foreign_key "relationship_categories", "cloths"
   add_foreign_key "relationship_temps", "categories"
   add_foreign_key "relationship_temps", "temps"
   add_foreign_key "temps", "users"
+  add_foreign_key "user_relationships", "users"
+  add_foreign_key "user_relationships", "users", column: "follow_id"
 end

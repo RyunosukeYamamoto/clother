@@ -1,0 +1,8 @@
+<ul class="cloths">
+  <% posts.each do |post| %>
+    <li class="cloth">
+      <%= link_to image_tag(post.image.url), post %>
+    </li>
+  <% end %>
+</ul>
+<%= paginate posts %>

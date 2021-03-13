@@ -1,9 +1,1 @@
-<ul>
-  <% @posts.each do |post| %>
-    <li>
-      <%= link_to image_tag(post.image.url), post %>
-      <br>
-      <%= post.description %>
-    </li>
-  <% end %>
-</ul>
+<%= render 'posts', posts: @posts %>

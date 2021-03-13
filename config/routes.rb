@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :show, :edit, :destroy, :update] do
     member do
       get :code
+      get :closet
+      get :following
+      get :follower
     end
   end
   resources :cloths, except: [:index, :edit, :update]
@@ -16,5 +19,7 @@ Rails.application.routes.draw do
   resources :relationship_categories, only: [:create, :destroy]
   resources :temps, except: [:index]
   resources :relationship_temps, only: [:create, :destroy]
-  resources :posts, except: [:edit, :update]
+  resources :posts
+  resources :post_relationships, only: [:create, :destroy]
+  resources :user_relationships, only: [:create, :destroy]
 end

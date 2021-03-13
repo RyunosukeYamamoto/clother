@@ -8,6 +8,7 @@ class Cloth < ApplicationRecord
     
   has_many :relationship_categories, dependent: :destroy
   has_many :my_categories, through: :relationship_categories, source: :category
+  has_many :post_relationships, dependent: :destroy
     
     
   def categorize(category)

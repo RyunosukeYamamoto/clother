@@ -1,0 +1,11 @@
+<div class="text-center">
+  <h1>投稿編集</h1><br>
+  <%= link_to image_tag(@post.image.url) %>
+</div>
+
+<%= render 'form', post: @post %>
+
+<% current_user.cloths.each do |cloth| %>
+  <h4><%= cloth.name %></h4>
+  <%= render 'post_relationships/add_cloth_button', post: @post, cloth: cloth %>
+<% end %>

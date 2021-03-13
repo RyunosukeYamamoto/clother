@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @category = current_user.categories.build  # for_with用
+    @posts = @user.posts.order(id: :desc).page(params[:page]).per(16)
   end
 
   def new
@@ -42,6 +42,23 @@ class UsersController < ApplicationController
   def code
     @user = User.find(params[:id])
     @temps = @user.temps
+  end
+  
+  def closet
+    @user = User.find(params[:id])
+    if @user == current_user
+      @category = current_user.categories.build  # for_with用
+    end
+  end
+  
+  def following
+    @user = User.find(params[:id])
+    @followings = @user.followings.page(params[:page]).per(5)
+  end
+  
+  def follower
+    @user = User.find(params[:id])
+    @followers = @user.followers.page(params[:page]).per(5)
   end
   
   private
