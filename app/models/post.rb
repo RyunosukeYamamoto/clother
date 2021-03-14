@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :post_relationships, dependent: :destroy
   has_many :wearing_cloths, through: :post_relationships, source: :cloth
+  has_many :favorites, dependent: :destroy
   
   
   def add_cloth(cloth)

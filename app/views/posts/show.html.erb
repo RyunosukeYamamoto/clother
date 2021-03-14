@@ -2,6 +2,9 @@
   <%= @post.user.name %><br>
   <%= image_tag @post.image.url %>
   <p><%= @post.description %></p>
+  <% if logged_in? %>
+    <%= render 'favorites/favo_button', post: @post %>
+  <% end %>
   <h2>このコーデに含まれる服</h2>
   <ul class="cloths">
     <%= render 'cloths/cloths', cloths: @post.wearing_cloths %>

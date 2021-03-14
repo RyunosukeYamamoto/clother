@@ -13,8 +13,8 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
             <div class="dropdown-menu">
               <%= link_to 'マイページ', current_user, class: "dropdown-item" %>
+              <%= link_to "マイクローゼット", closet_user_path(current_user), class: 'dropdown-item' %>
               <%= link_to "服の追加", new_cloth_path, class: 'dropdown-item' %>
-              <%= link_to "気温パターン一覧", code_user_path(current_user), class: 'dropdown-item' %>
               <%= link_to 'みんなのファッション', posts_path, class: "dropdown-item" %>
               <%= link_to 'ファッションを投稿', new_post_path, class: "dropdown-item" %>
               <%= link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item' %>

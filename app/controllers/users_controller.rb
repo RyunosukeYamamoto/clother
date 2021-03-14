@@ -61,6 +61,11 @@ class UsersController < ApplicationController
     @followers = @user.followers.page(params[:page]).per(5)
   end
   
+  def favo
+    @user = User.find(params[:id])
+    @favo = @user.favoposts.page(params[:page]).per(5)
+  end
+  
   private
   
   def user_params

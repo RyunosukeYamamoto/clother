@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get :closet
       get :following
       get :follower
+      get :favo
     end
   end
   resources :cloths, except: [:index, :edit, :update]
@@ -22,4 +23,5 @@ Rails.application.routes.draw do
   resources :posts
   resources :post_relationships, only: [:create, :destroy]
   resources :user_relationships, only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy]
 end
