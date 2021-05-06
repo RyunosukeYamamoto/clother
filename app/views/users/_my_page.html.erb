@@ -1,4 +1,8 @@
-<h3><%= @user.name %>のページ
+<h3>
+  <%= @user.name %>のページ
+  <% if @user == current_user %>
+    <small class="text-mu ml-3"><%= link_to 'ユーザ情報を編集', edit_user_path(current_user) %></small>
+  <% end %>
   <%= render 'user_relationships/follow_button', user: @user %>
 </h3>
 <%= link_to 'クローゼットを見る', closet_user_path(@user), class: 'btn btn-success btn-block' %>

@@ -193,7 +193,11 @@ ul{
   width: 90%;
 }
 
-.follow_button{
+.follow_button, .inline-button{
   display: inline-block;
+}
+
+.post-image{
+  width: 100%;
 }
 

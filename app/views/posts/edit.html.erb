@@ -1,11 +1,12 @@
-<div class="text-center">
-  <h1>投稿編集</h1><br>
-  <%= link_to image_tag(@post.image.url) %>
+<div class="container">
+  <h2 class="text-center">投稿編集</h2>
+  <div class="text-center">
+    <%= link_to image_tag(@post.image.url) %>
+  </div>
+  <%= render 'form', post: @post %>
+
+  <h4>このコーデにはどの服が含まれますか？</h4>
+  <% current_user.cloths.each do |cloth| %>
+    <%= render 'post_relationships/add_cloth_button', post: @post, cloth: cloth %>
+  <% end %>
 </div>
-
-<%= render 'form', post: @post %>
-
-<% current_user.cloths.each do |cloth| %>
-  <h4><%= cloth.name %></h4>
-  <%= render 'post_relationships/add_cloth_button', post: @post, cloth: cloth %>
-<% end %>
