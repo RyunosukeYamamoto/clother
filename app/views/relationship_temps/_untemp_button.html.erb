@@ -1,5 +1,7 @@
-<%= form_with(model: temp.relationship_temps.find_by(category_id: category.id), local: true, method: :delete) do |f| %>
-  <%= hidden_field_tag :temp_id, temp.id %>
-  <%= hidden_field_tag :category_id, category.id %>
-  <%= f.submit '解除', class: 'btn btn-primary btn-small' %>
-<% end %>
+<div class="text-center">
+  <%= form_with(model: temp.relationship_temps.find_by(category_id: category.id), local: true, method: :delete) do |f| %>
+    <%= hidden_field_tag :temp_id, temp.id %>
+    <%= hidden_field_tag :category_id, category.id %>
+    <%= f.submit '解除', class: 'btn btn-primary btn-small' %>
+  <% end %>
+</div>

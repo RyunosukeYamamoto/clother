@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
       else
         flash[:danger] = 'カテゴリーを追加できません。'
       end
-      redirect_to @category.user
+      redirect_to closet_user_url(current_user)
     end
     
     def destroy

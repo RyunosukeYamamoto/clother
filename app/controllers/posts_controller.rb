@@ -3,11 +3,7 @@ class PostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
   
   def index
-    if logged_in?
-      @posts = Post.order(id: :desc).page(params[:page]).per(4)
-    else
-      @posts = Post.order(id: :desc).page(params[:page]).per(4)
-    end
+    @posts = Post.order(id: :desc).page(params[:page]).per(16)
   end
   
   def show

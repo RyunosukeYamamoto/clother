@@ -1,5 +1,7 @@
-<%= form_with(model: temp.relationship_temps.build, local: true) do |f| %>
-  <%= hidden_field_tag :temp_id, temp.id %>
-  <%= hidden_field_tag :category_id, category.id %>
-  <%= f.submit '追加', class: 'btn btn-outline-primary btn-small' %>
-<% end %>
+<div class="text-center">
+  <%= form_with(model: temp.relationship_temps.build, local: true) do |f| %>
+    <%= hidden_field_tag :temp_id, temp.id %>
+    <%= hidden_field_tag :category_id, category.id %>
+    <%= f.submit '追加', class: 'btn btn-outline-primary btn-small' %>
+  <% end %>
+</div>

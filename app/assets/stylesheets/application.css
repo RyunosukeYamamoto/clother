@@ -14,10 +14,6 @@
  *= require_self
  */
  
-body{
-  padding-bottom: 40px;
-}
- 
 #weather_data{
   text-align: center;
 }
@@ -192,57 +188,12 @@ ul{
   display: none;
 }
 
-.app {
-    width: 95%;
-    margin: 40px auto;
-    padding: 20px 0 20px 0;
-    line-height: 1.5;
-    border: 1px solid #ffffff;
-    border-radius: 5px;
-    background-color: transparent;
-    box-shadow: 2px 2px 5px 0px rgba(200,200,200,1);
-    text-align: center;
-}
-.name{
-  border: solid 1px #bbb;
-}
-.name:focus {
-    box-shadow: 0 0 5px 0 rgba(255,153,0,1);
-    border: 2px solid #FFF !important;
-    outline: 0;
-}
-.cloth-show:after{
-  content: "";
-  display: block;
-  clear: both;
-}
-.cloth-main{
-  float: left;
-  width: 35%;
-  text-align: center;
-}
+
 .cloth-main img{
   width: 90%;
 }
-.cloths-category-group{
-  float: left;
-  width: 65%;
-}
-.category-classify{
-  border-bottom: solid 1px #d7cc55;
-  border-left: solid 1px #d7cc55;
-}
-.temp-list{
-  border: solid 1px #b3cb9c;
-  margin: 0 30px;
-  padding-bottom: 15px;
-}
-.temp-category-group:after{
-  content: "";
-  display: block;
-  clear: both;
-}
-.temp-category{
-  margin-left: 30px;
+
+.follow_button{
+  display: inline-block;
 }
 

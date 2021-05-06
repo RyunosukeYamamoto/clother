@@ -1,30 +1,23 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-light bg-info">
+  <nav class="navbar navbar-expand navbar-light bg-info">
     <a href="/" class="navbar-brand">Clother</a>
-    
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse" id="nav-bar">
-      <ul class="navbar-nav">
-        <% if logged_in? %>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
-            <div class="dropdown-menu">
-              <%= link_to 'マイページ', current_user, class: "dropdown-item" %>
-              <%= link_to "マイクローゼット", closet_user_path(current_user), class: 'dropdown-item' %>
-              <%= link_to "服の追加", new_cloth_path, class: 'dropdown-item' %>
-              <%= link_to 'みんなのファッション', posts_path, class: "dropdown-item" %>
-              <%= link_to 'ファッションを投稿', new_post_path, class: "dropdown-item" %>
-              <%= link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item' %>
-            </div>
-          </li>
-        <% else %>
-          <li class="nav-item"><%= link_to "ログイン", login_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "サインアップ", signup_path, class: "nav-link" %></li>
-        <% end %>
-      </ul>
-    </div>
+    <ul class="navbar-nav">
+      <% if logged_in? %>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
+          <div class="dropdown-menu">
+            <%= link_to 'マイページ', current_user, class: "dropdown-item" %>
+            <%= link_to "マイクローゼット", closet_user_path(current_user), class: 'dropdown-item' %>
+            <%= link_to "服の追加", new_cloth_path, class: 'dropdown-item' %>
+            <%= link_to 'みんなのコーデ', posts_path, class: "dropdown-item" %>
+            <%= link_to 'コーデを投稿', new_post_path, class: "dropdown-item" %>
+            <%= link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item' %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item"><%= link_to "ログイン", login_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "サインアップ", signup_path, class: "nav-link" %></li>
+      <% end %>
+    </ul>
   </nav>
 </header>

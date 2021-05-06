@@ -1,0 +1,11 @@
+<h3><%= @user.name %>のページ
+  <%= render 'user_relationships/follow_button', user: @user %>
+</h3>
+<%= link_to 'クローゼットを見る', closet_user_path(@user), class: 'btn btn-success btn-block' %>
+
+<ul class="nav nav-tabs nav-justified mb-3">
+  <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">Post</a></li>
+  <li class="nav-item"><a href="<%= following_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(following_user_path(@user)) %>">Followings</a></li>
+  <li class="nav-item"><a href="<%= follower_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(follower_user_path(@user)) %>">Followers</a></li>
+  <li class="nav-item"><a href="<%= favo_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(favo_user_path(@user)) %>">My Favo List</a></li>
+</ul>

@@ -1,4 +1,4 @@
-<div>
+<div class="container">
   <ul class="nav nav-tabs nav-justified mb-3">
     <li class="nav-item"><a href="<%= closet_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(closet_user_path(@user)) %>">クローゼット</a></li>
     <li class="nav-item"><a href="<%= code_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(code_user_path(@user)) %>">気温パターン</a></li>
@@ -6,7 +6,7 @@
 
 
 
-  <h1><%= @user.name %>のクローゼット</h1>
+  <h3><%= @user.name %>のクローゼット</h3>
   <% if @user == current_user %>
     <small class="text-muted ml-3"><%= link_to 'ユーザ情報を編集', edit_user_path(current_user) %></small>
   <% end %>
@@ -33,13 +33,13 @@
   </div>
   
   <% if @category %>
-    <h2>カテゴリーを追加</h2>
+    <h4>カテゴリーを追加</h4>
     <%= form_with(model: @category, local: true) do |f| %>
-      <div class="form-group">
+      <div class="form-group" style="width: 60%;">
         <%= f.label :name, 'カテゴリー名' %>
         <%= f.text_field :name, class: 'form-control' %>
       </div>
-      <%= f.submit '追加' %>
+      <%= f.submit '追加', class: 'btn btn-outline-primary' %>
     <% end %>
   <% end %>
 </div>

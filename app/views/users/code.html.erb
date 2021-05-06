@@ -1,34 +1,26 @@
-<div>
+<div class="container">
   <ul class="nav nav-tabs nav-justified mb-3">
     <li class="nav-item"><a href="<%= closet_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(closet_user_path(@user)) %>">クローゼット</a></li>
     <li class="nav-item"><a href="<%= code_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(code_user_path(@user)) %>">気温パターン</a></li>
   </ul>
-  
 
-
-  <h1><%= @user.name %>の気温パターン</h1>
+  <h3><%= @user.name %>の気温パターン</h1>
   <ul>
     <% @temps.each do |temp| %>
-      <li class="temp-list">
+      <li>
         <h4>
           <%= link_to temp.name, temp_path(temp) %>
-          <% if current_user == @user %>
-            <span class="dropdown">
-              <button type="button" class="btn btn-light" data-toggle="dropdown">
-                <i class="fas fa-align-justify"></i>
-              </button>
-              <div class="dropdown-menu">
-                <%= link_to '編集', edit_temp_path(temp), class: 'dropdown-item' %>
-                <%= link_to '削除', temp, method: :delete, data: { confirm: 'You sure?' }, class: 'dropdown-item' %>
-              </div>
-            </span>
-          <% end %>
-            <%= temp.min %>~<%= temp.max %>°Cのとき
+          <%= temp.min %>~<%= temp.max %>°Cのとき
         </h4>
+        <% if current_user == @user %>
+          <%= link_to '編集', edit_temp_path(temp) %>
+          <%= link_to '削除', temp, method: :delete, data: { confirm: 'You sure?' } %>
+        <% end %>
         <% temp.temps_category.each do |category| %>
           <span class="badge badge-info"><%= category.name %></span>
         <% end %>
       </li>
+      <hr>
     <% end %>
   </ul>
   
