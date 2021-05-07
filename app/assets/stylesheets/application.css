@@ -99,41 +99,6 @@ ul{
 }
 }
 
-@media(min-width: 576px){
- .how-to-use{
-   margin: 0 20%;
- } 
-}
-
-@media(max-width: 575px){
-  .how-to-use{
-    margin: 0;
-  }
-}
-
-.how-to-use:after{
-  content: "";
-  display: block;
-  clear: both;
-}
-
-@media(min-width: 412px){
- .step{
-   float: left;
-   width: 33.3333%;
- } 
-}
-
-@media(max-width: 411px){
-  .step{
-    float: left;
-    width: 100%;
-  }
-}
-
-.step img{
-  width: 75%;
-}
 .tab-wrap {
   display: flex;
   flex-wrap: wrap;

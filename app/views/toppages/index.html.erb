@@ -49,21 +49,23 @@
     <% end %>
   <% end %>
   
-<div class="how-to-use">
+<div class="container">
   <h2>簡単3ステップで自動でその日のコーデを提案！</h2>
-  <div class="step" style="text-align:center;">
-    <h3>1.まずは服を追加</h3>
-    <img src="assets/add_cloths.png" alt='服の追加'><br>
-    <% if logged_in? %>
-      <%= link_to '服を追加', new_cloth_path, class: 'btn btn-danger mt-3' %>
-    <% end %>
-  </div>
-  <div class="step" style="text-align:center;">
-    <h3>2.服をカテゴライズ</h3>
-    <img src="assets/categorize.png" alt="カテゴライズ">
-  </div>
-  <div class="step" style="text-align:center;">
-    <h3>3.気温パターンを作る</h3>
-    <img src="assets/temp.png" alt="天気パターン">
+  <div class="row">
+    <div class="col-4">
+      <h3>1.まずは服を追加</h3>
+      <img src="assets/add_cloths.png" alt='服の追加' width="100%"><br>
+      <% if logged_in? %>
+        <%= link_to '服を追加', new_cloth_path, class: 'btn btn-danger mt-3' %>
+      <% end %>
+    </div>
+    <div class="col-4">
+      <h3>2.服をカテゴライズ</h3>
+      <img src="assets/categorize.png" alt="カテゴライズ" width="100%">
+    </div>
+    <div class="col-4">
+      <h3>3.気温パターンを作る</h3>
+      <img src="assets/temp.png" alt="天気パターン" width="100%">
+    </div>
   </div>
 </div>
